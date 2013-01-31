@@ -55,7 +55,7 @@ char *createOutputFileName(const char* filename)
 
 void add_line(double startX, double endX, double startY, double endY, std::ostream& out)
 {
-    out << "<infiniteline><point x=\"" << startX << "\" y=\"" << startY << "\" /><point x=\"" << endX << "\" y=\"" << endY << "\" /></infiniteline>";
+    out << "<line><point x=\"" << startX << "\" y=\"" << startY << "\" /><point x=\"" << endX << "\" y=\"" << endY << "\" /></line>";
 }
   
 int main(int argc, char* argv[])
@@ -75,6 +75,7 @@ int main(int argc, char* argv[])
 
     char *outputFileName = createOutputFileName(argv[1]);
     std::ofstream output(outputFileName);
+    free(outputFileName);
     createArchimedesHeader(output);
     
     for (unsigned int i = 0; i < dwgData.num_objects; i++)
@@ -95,7 +96,6 @@ int main(int argc, char* argv[])
 
     finishArchimesFile(output);
     output.close();
-    free(outputFileName);
     dwg_free(&dwgData);
     return 0;
 }
