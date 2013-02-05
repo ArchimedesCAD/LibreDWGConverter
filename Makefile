@@ -18,13 +18,13 @@ OBJECTS_NOMAIN = $(OBJECTS:$(BUILD_DIR)/main.o=)
 #Define type of compilation
 TYPE=debug
 ifeq ($(TYPE),debug)
-    LDFLAGS = -lredwg $(EXTRA_LDFLAGS)
-    CCFLAGS = -Wall -pedantic -I. -g -O0
+    LDFLAGS = libredwg/src/.libs/libredwg.a $(EXTRA_LDFLAGS)
+    CCFLAGS = -Wall -pedantic -I. -Ilibredwg/src -g -O0
     PRINTDEBUG = 1
 endif
 
 ifeq ($(TYPE),release)
-    LDFLAGS = -s -pipe -lredwg $(EXTRA_LDFLAGS)
+    LDFLAGS = -s -pipe libredwg/src/.libs/libredwg.a $(EXTRA_LDFLAGS)
     CCFLAGS = -Wall -pedantic -I. -O3
     PRINTDEBUG = 0
 endif
