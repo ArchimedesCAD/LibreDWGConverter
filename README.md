@@ -3,6 +3,8 @@ LibreDWGConverter
 
 This project is a standalone converter between the proprietary DWG format and free CAD formats
 
+To clone this project, use "git clone --recursive" to also get libredwg
+
 Copyright 2013 Eduardo Menezes de Morais <eduardo.morais@usp.br>
 
     This program is free software: you can redistribute it and/or modify it
