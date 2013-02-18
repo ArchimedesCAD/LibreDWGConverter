@@ -10,7 +10,7 @@ EXTRA_LDFLAGS=
 
 #File definitions
 SOURCES = $(wildcard *.cpp)
-OBJECTS = $(addprefix $(BUILD_DIR)/, $(SOURCES:.cpp=.o))
+OBJECTS = $(wildcard libredwg/src/*.o) $(addprefix $(BUILD_DIR)/, $(SOURCES:.cpp=.o))
 OBJECTS_NOMAIN = $(OBJECTS:$(BUILD_DIR)/main.o=)
 #TEST_SOURCES = $(wildcard tests/*.cpp)
 #TEST_OBJECTS = $(addprefix $(BUILD_DIR)/, $(TEST_SOURCES:.cpp=.o))
@@ -18,13 +18,13 @@ OBJECTS_NOMAIN = $(OBJECTS:$(BUILD_DIR)/main.o=)
 #Define type of compilation
 TYPE=debug
 ifeq ($(TYPE),debug)
-    LDFLAGS = libredwg/src/.libs/libredwg.a $(EXTRA_LDFLAGS)
-    CCFLAGS = -Wall -pedantic -I. -Ilibredwg/src -g -O0
+    LDFLAGS = $(EXTRA_LDFLAGS)
+    CCFLAGS = -Wall -pedantic -I. -g -O0
     PRINTDEBUG = 1
 endif
 
 ifeq ($(TYPE),release)
-    LDFLAGS = -s -pipe libredwg/src/.libs/libredwg.a $(EXTRA_LDFLAGS)
+    LDFLAGS = -s -pipe $(EXTRA_LDFLAGS)
     CCFLAGS = -Wall -pedantic -I. -O3
     PRINTDEBUG = 0
 endif

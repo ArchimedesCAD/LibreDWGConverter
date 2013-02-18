@@ -2,9 +2,9 @@
 #include <cstring>
 #include <iostream>
 #include <fstream>
-#include <dwg.h>
 
 #include "c++11_warning.h"
+#include "libredwg/src/dwg.h"
 
 __attribute__((noreturn)) void fatal_error (const char* message)
 {
