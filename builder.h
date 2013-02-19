@@ -14,12 +14,13 @@ namespace converter {
         
     public:
         Builder(const char*, const char*);
-        ~Builder();
+        virtual ~Builder();
         
         virtual void open_header() = 0;
         virtual void close_header() = 0;
         
         virtual void add_line_segment(point p1, point p2) = 0;
+        virtual void add_circle(point center, ldouble radius) = 0;
     };
 }
 

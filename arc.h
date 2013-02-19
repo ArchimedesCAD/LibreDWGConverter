@@ -15,6 +15,7 @@ namespace converter {
         void close_header();
         
         void add_line_segment(point, point);
+        void add_circle(point, ldouble);
     };
 }
 

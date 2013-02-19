@@ -41,5 +41,12 @@ namespace converter {
               << "\" /><point x=\"" << p2.x 
               << "\" y=\"" << p2.y << "\" /></line>";
     }
-
+    
+    void ARCBuilder::add_circle(point center, ldouble radius)
+    {
+        *out << "<circle><point x=\"" << center.x 
+             << "\" y = \"" << center.y << "\" />"
+             << "<radius>" << radius << "</radius>"
+             << "</circle>";             
+    }
 }

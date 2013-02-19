@@ -32,6 +32,14 @@ namespace converter {
                 point p2 = {line->end.x, line->end.y, line->end.z};
                 builder->add_line_segment(p1,p2);
                 break;
+            }            
+            case DWG_TYPE_CIRCLE:
+            {
+                Dwg_Entity_CIRCLE *circle = dwg_data.object[index].tio.entity->tio.CIRCLE;
+                point center = {circle->center.x, circle->center.y, circle->center.z};
+                ldouble radius = circle->radius;
+                builder->add_circle(center,radius);
+                break;
             }
             default:
                 std::cerr << "Unsupported element found: "
