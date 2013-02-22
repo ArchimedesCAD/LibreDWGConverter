@@ -5,7 +5,8 @@ This project is a standalone converter between the proprietary DWG format and fr
 
 To clone this project, use "git clone --recursive" to also get libredwg
 
-Copyright 2013 Eduardo Menezes de Morais <eduardo.morais@usp.br>
+Copyright 2013 Eduardo Menezes de Morais <eduardo.morais@usp.br> and
+               Neuton de Oliveira Braga Jr <neutonjr@gmail.com>
 
     This program is free software: you can redistribute it and/or modify it
     under the terms of the GNU Affero General Public License as published by the

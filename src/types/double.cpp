@@ -31,6 +31,11 @@ bool Double::is_equal_with_epsilon(const Double& d1, const Double& d2, const Dou
     return fabs(d1.value()-d2.value()) <= epsilon.value();   
 }
 
+Double Double::operator-() const
+{
+     return (-_x);
+}
+
 Double operator+(const Double& x, const Double& y) 
 {
      return x.value() + y.value();

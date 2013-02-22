@@ -1,5 +1,7 @@
 #include "point.h"
 
+#include <cmath>
+
 Point::Point(const Point& p) : _x(p.x()), _y(p.y()), _z(p.z()) { }
 
 Point::Point(const Double& x, const Double& y, const Double& z) : 
@@ -54,6 +56,20 @@ bool Point::is_equal(const Point& p1, const Point& p2, const Double& epsilon)
     return (p1.x().is_equal_with_epsilon(p2.x(), epsilon) &&
             p1.y().is_equal_with_epsilon(p2.y(), epsilon) &&
             p1.z().is_equal_with_epsilon(p2.z(), epsilon));
+}
+
+Double Point::distance(const Point& p) const 
+{
+    return distance(*this,p);
+}
+
+Double Point::distance(const Point& p1, const Point& p2)
+{
+    Double res = ((p1.x()-p2.x())*(p1.x()-p2.x())) +
+                 ((p1.y()-p2.y())*(p1.y()-p2.y())) +
+                 ((p1.z()-p2.z())*(p1.z()-p2.z()));
+    
+    return sqrt(res.value());
 }
 
 std::ostream& operator<<(std::ostream& os, const Point& p)

@@ -20,6 +20,8 @@ public:
     static bool is_equal(const Double&, const Double&);
     static bool is_equal_with_epsilon(const Double& d1, const Double& d2, const Double& epsilon);
     
+    Double operator-() const;
+    
     friend Double operator+(const Double&, const Double&);
     friend Double operator-(const Double&, const Double&);
     friend Double operator*(const Double&, const Double&);

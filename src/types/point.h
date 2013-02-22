@@ -22,7 +22,7 @@ public:
     
     Double z() const;
     void set_z(const Double&);
-    
+        
     Point operator+(const Point&) const; 
     Point operator-(const Point&) const;
     Point operator*(const Double&) const;
@@ -31,6 +31,9 @@ public:
     bool is_equal(const Point& p, const Double& epsilon);
     static bool is_equal(const Point& p1, const Point& p2);
     static bool is_equal(const Point& p1, const Point& p2, const Double& epsilon);
+    
+    Double distance(const Point& p) const;
+    static Double distance(const Point& p1, const Point& p2);
     
     friend std::ostream& operator<<(std::ostream& os, const Point& p);
 };
