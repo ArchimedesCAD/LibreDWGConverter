@@ -1,6 +1,10 @@
 #include "dwg.h"
+
+#include <iostream>
+
 #include "util/util.h"
 #include "util/error.h"
+
 
 namespace converter {
     DWGReader::DWGReader(const char *urlfile) {
@@ -28,16 +32,16 @@ namespace converter {
             case DWG_TYPE_LINE:
             {
                 Dwg_Entity_LINE *line = dwg_data.object[index].tio.entity->tio.LINE;
-                point p1 = {line->start.x, line->start.y, line->start.z};
-                point p2 = {line->end.x, line->end.y, line->end.z};
+                Point p1 = {line->start.x, line->start.y, line->start.z};
+                Point p2 = {line->end.x, line->end.y, line->end.z};
                 builder->add_line_segment(p1,p2);
                 break;
             }            
             case DWG_TYPE_CIRCLE:
             {
                 Dwg_Entity_CIRCLE *circle = dwg_data.object[index].tio.entity->tio.CIRCLE;
-                point center = {circle->center.x, circle->center.y, circle->center.z};
-                ldouble radius = circle->radius;
+                Point center = {circle->center.x, circle->center.y, circle->center.z};
+                Double radius = circle->radius;
                 builder->add_circle(center,radius);
                 break;
             }

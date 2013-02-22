@@ -1,6 +1,7 @@
 #include "arc.h"
+
 #include "util/util.h"
-#include "error.h"
+#include "util/error.h"
 
 using namespace std;
 
@@ -34,18 +35,18 @@ namespace converter {
         *out << "</container></drawing>" << endl;
     }
 
-    void ARCBuilder::add_line_segment(point p1, point p2) 
+    void ARCBuilder::add_line_segment(Point p1, Point p2) 
     {
-         *out << "<line><point x=\"" << p1.x 
-              << "\" y=\"" << p1.y 
-              << "\" /><point x=\"" << p2.x 
-              << "\" y=\"" << p2.y << "\" /></line>";
+         *out << "<line><point x=\"" << p1.x() 
+              << "\" y=\"" << p1.y() 
+              << "\" /><point x=\"" << p2.x() 
+              << "\" y=\"" << p2.y() << "\" /></line>";
     }
     
-    void ARCBuilder::add_circle(point center, ldouble radius)
+    void ARCBuilder::add_circle(Point center, Double radius)
     {
-        *out << "<circle><point x=\"" << center.x 
-             << "\" y = \"" << center.y << "\" />"
+        *out << "<circle><point x=\"" << center.x() 
+             << "\" y = \"" << center.y() << "\" />"
              << "<radius>" << radius << "</radius>"
              << "</circle>";             
     }

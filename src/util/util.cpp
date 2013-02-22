@@ -1,7 +1,7 @@
+#include "util.h"
+
 #include <cstring>
 #include <cstdlib>
-
-#include "util.h"
 
 namespace util {
     char* create_filename(const char* filename, const char* ext)

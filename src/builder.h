@@ -19,8 +19,8 @@ namespace converter {
         virtual void open_header() = 0;
         virtual void close_header() = 0;
         
-        virtual void add_line_segment(point p1, point p2) = 0;
-        virtual void add_circle(point center, ldouble radius) = 0;
+        virtual void add_line_segment(Point p1, Point p2) = 0;
+        virtual void add_circle(Point center, Double radius) = 0;
     };
 }
 

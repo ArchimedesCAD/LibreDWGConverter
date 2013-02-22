@@ -3,7 +3,6 @@
 
 #include "../libredwg/src/dwg.h"
 
-#include "eltypes.h"
 #include "builder.h"
 
 namespace converter {
