@@ -35,7 +35,8 @@ namespace converter {
         *out << "</container></drawing>" << endl;
     }
 
-    void ARCBuilder::add_line_segment(Point p1, Point p2) 
+    void ARCBuilder::add_line_segment(Point p1, Point p2, Vector extrusion,
+                                      Double thickness)
     {
          *out << "<line><point x=\"" << p1.x() 
               << "\" y=\"" << p1.y() 
@@ -43,7 +44,8 @@ namespace converter {
               << "\" y=\"" << p2.y() << "\" /></line>";
     }
     
-    void ARCBuilder::add_circle(Point center, Double radius)
+    void ARCBuilder::add_circle(Point center, Double radius, Vector extrusion,
+                                Double thickness)
     {
         *out << "<circle><point x=\"" << center.x() 
              << "\" y = \"" << center.y() << "\" />"

@@ -14,8 +14,11 @@ namespace converter {
         void open_header();
         void close_header();
         
-        void add_line_segment(Point, Point);
-        void add_circle(Point, Double);
+        void add_line_segment(Point p1, Point p2, Vector extrusion, 
+                              Double thickness);
+
+        void add_circle(Point center, Double radius, Vector extrusion,
+                        Double thickness);
     };
 }
 

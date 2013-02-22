@@ -32,17 +32,29 @@ namespace converter {
             case DWG_TYPE_LINE:
             {
                 Dwg_Entity_LINE *line = dwg_data.object[index].tio.entity->tio.LINE;
-                Point p1 = {line->start.x, line->start.y, line->start.z};
-                Point p2 = {line->end.x, line->end.y, line->end.z};
-                builder->add_line_segment(p1,p2);
+                
+                Point p1         = {line->start.x, line->start.y, line->start.z};
+                Point p2         = {line->end.x, line->end.y, line->end.z};
+                Vector extrusion = {line->extrusion.x, line->extrusion.y, 
+                                    line->extrusion.z};
+                Double thickness = line->thickness;
+                
+                builder->add_line_segment(p1,p2,extrusion,thickness);
                 break;
             }            
             case DWG_TYPE_CIRCLE:
             {
-                Dwg_Entity_CIRCLE *circle = dwg_data.object[index].tio.entity->tio.CIRCLE;
-                Point center = {circle->center.x, circle->center.y, circle->center.z};
-                Double radius = circle->radius;
-                builder->add_circle(center,radius);
+                Dwg_Entity_CIRCLE *circle = 
+                         dwg_data.object[index].tio.entity->tio.CIRCLE;
+                
+                Point center     = {circle->center.x, circle->center.y, 
+                                    circle->center.z};
+                Double radius    = circle->radius;
+                Vector extrusion = {circle->extrusion.x, circle->extrusion.y, 
+                                    circle->extrusion.z};
+                Double thickness = circle->thickness;
+                
+                builder->add_circle(center,radius,extrusion,thickness);
                 break;
             }
             default:
