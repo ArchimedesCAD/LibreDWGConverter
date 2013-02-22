@@ -1,7 +1,7 @@
 #ifndef __DWG_H_
 #define __DWG_H_
 
-#include "libredwg/src/dwg.h"
+#include "../libredwg/src/dwg.h"
 
 #include "eltypes.h"
 #include "builder.h"

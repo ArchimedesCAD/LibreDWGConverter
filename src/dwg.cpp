@@ -1,6 +1,6 @@
 #include "dwg.h"
-#include "util.h"
-#include "error.h"
+#include "util/util.h"
+#include "util/error.h"
 
 namespace converter {
     DWGReader::DWGReader(const char *urlfile) {

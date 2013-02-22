@@ -9,8 +9,8 @@ CC=g++
 EXTRA_LDFLAGS=
 
 #File definitions
-SOURCES = $(wildcard *.cpp)
-OBJECTS = $(wildcard libredwg/src/*.o) $(addprefix $(BUILD_DIR)/, $(SOURCES:.cpp=.o))
+SOURCES = $(wildcard *.cpp src/*.cpp src/util/*.cpp)
+OBJECTS = $(wildcard libredwg/src/*.o) $(addprefix $(BUILD_DIR)/, $(notdir $(SOURCES:.cpp=.o)))
 OBJECTS_NOMAIN = $(OBJECTS:$(BUILD_DIR)/main.o=)
 #TEST_SOURCES = $(wildcard tests/*.cpp)
 #TEST_OBJECTS = $(addprefix $(BUILD_DIR)/, $(TEST_SOURCES:.cpp=.o))
@@ -81,6 +81,8 @@ clean:
 	@$(RM) -frv $(BUILD_DIR) $(BIN_DIR)
 	@$(RM) -fv Makefile.deps
 	@$(RM) -fv *~
+	@$(RM) -fv src/*~
+	@$(RM) -fv src/util/*~
 #	@$(RM) -fv tests/*~
 
 clean-deps:

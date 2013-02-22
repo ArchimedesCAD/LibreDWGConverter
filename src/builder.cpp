@@ -1,8 +1,8 @@
 #include <iostream>
 
 #include "builder.h"
-#include "error.h"
-#include "util.h"
+#include "util/error.h"
+#include "util/util.h"
 
 namespace converter {
     Builder::Builder(const char *url_wo_ext, const char *ext) 

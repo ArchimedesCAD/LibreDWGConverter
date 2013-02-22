@@ -4,9 +4,9 @@
 #include <fstream>
 
 #include "c++11_warning.h"
-#include "arc.h"
-#include "dwg.h"
-#include "error.h"
+#include "src/util/error.h"
+#include "src/arc.h"
+#include "src/dwg.h"
 
 using namespace std;
 using namespace converter;
