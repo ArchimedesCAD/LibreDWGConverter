@@ -1,8 +1,9 @@
 #ifndef __DWG_H_
 #define __DWG_H_
 
-#include "../libredwg/src/dwg.h"
+#include <map>
 
+#include "../libredwg/src/dwg.h"
 #include "builder.h"
 
 namespace converter {
@@ -10,7 +11,11 @@ namespace converter {
     {
         Dwg_Data dwg_data;
         char *url_wo_ext;
-
+        std::map<DWG_OBJECT_TYPE,std::string> names;
+        
+        void success(Dwg_Object_Type type);
+        void fail(Dwg_Object_Type type);
+        
     public:
         DWGReader(const char *filename);
         ~DWGReader();
