@@ -44,6 +44,16 @@ namespace converter {
               << "</line>";
     }
     
+    void ARCBuilder::add_line(Vector point, Vector vector)
+    {
+        Point point2 = point + 10*vector;
+        
+        *out << "<infiniteline>"
+             << "<point x=\"" << point.x() << "\" y=\"" << point.y() << "\" />"
+             << "<point x=\"" << point2.x() << "\" y=\"" << point2.y() << "\" />"
+             << "</infiniteline>";
+    }
+    
     void ARCBuilder::add_circle(Vector center, Double radius, Vector extrusion,
                                 Double thickness)
     {

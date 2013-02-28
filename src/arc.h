@@ -16,6 +16,8 @@ namespace converter {
         
         void add_line_segment(Vector p1, Vector p2, Vector extrusion, 
                               Double thickness);
+        
+        void add_line(Vector point, Vector vector);
 
         void add_circle(Vector center, Double radius, Vector extrusion,
                         Double thickness);

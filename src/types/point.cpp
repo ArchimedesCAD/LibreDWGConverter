@@ -77,3 +77,8 @@ std::ostream& operator<<(std::ostream& os, const Point& p)
     os << "(" << p._x << "," << p._y << "," << p._z << ")";
     return os;
 }
+
+Point operator*(const Double &d, const Point &p)
+{
+    return Point(p._x * d, p._y * d, p._z * d);
+}

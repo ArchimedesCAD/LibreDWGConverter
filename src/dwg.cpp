@@ -143,7 +143,18 @@ namespace converter {
                 
                 builder->add_line_segment(p1,p2,extrusion,thickness);
                 break;
-            }            
+            }     
+            case DWG_TYPE_XLINE:
+            {
+                Dwg_Entity_XLINE *xline = dwg_data.object[index].tio.entity->tio.XLINE;
+                
+                Vector point  = {xline->point.x, xline->point.y, xline->point.z};
+                Vector vector = {xline->vector.x, xline->vector.y, xline->vector.z};
+                
+                builder->add_line(point,vector);
+                
+                break;
+            }       
             case DWG_TYPE_CIRCLE:
             {
                 Dwg_Entity_CIRCLE *circle = 

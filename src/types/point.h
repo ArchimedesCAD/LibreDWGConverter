@@ -36,8 +36,10 @@ public:
     static Double distance(const Point& p1, const Point& p2);
     
     friend std::ostream& operator<<(std::ostream& os, const Point& p);
+    friend Point operator*(const Double&, const Point&);
 };
 
 std::ostream& operator<<(std::ostream& os, const Point& p);
+Point operator*(const Double&, const Point&);
 
 #endif
