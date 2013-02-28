@@ -4,6 +4,8 @@
 #include "util/error.h"
 #include "util/constants.h"
 
+#include "geometry/ellipse.h"
+
 using namespace std;
 
 namespace converter {
@@ -93,26 +95,23 @@ namespace converter {
                                  Double start_angle, Double end_angle, 
                                  Vector extrusion)
     {
+        Vector a = center - sm_axis;
+        Vector b = center - 
+                   (Vector(-a.y()+center.y(),a.x()-center.x(), 0.0)*axis_ratio); // Only 2D
+            
         if (start_angle.is_equal_with_epsilon(0.0, constants::EPSILON) &&
             end_angle.is_equal_with_epsilon(2*constants::PI, constants::EPSILON)) {
-            Vector a = center - sm_axis;
-            Vector b = center + 
-                       Vector(-a.y()+center.y(),a.x()-center.x(), 0.0)*axis_ratio; // Only 2D
-            
             add_ellipse(center, a, b);
         } else {
-            // TODO Elliptic Arc           
+            Double dist_a = a.distance(center);
+            Double dist_b = b.distance(center);
+            Double phi    = (a-center).angle();
+            
+            Ellipse ellipse(center, dist_a, dist_b, phi);
+            
+            add_ellipse(center, a, b, ellipse.get_point(start_angle), 
+                        ellipse.get_point(end_angle));                      
         }
-    }
-    
-    
-    void ARCBuilder::add_ellipse(Vector center, Vector a, Vector b)
-    {
-        *out << "<ellipse>"
-             << "<point x=\"" << center.x() << "\" y=\"" << center.y() << "\"/>"
-             << "<point x=\"" << a.x() << "\" y=\"" << a.y() << "\"/>"
-             << "<point x=\"" << b.x() << "\" y=\"" << b.y() << "\"/>"
-             << "</ellipse>";
     }
     
     void ARCBuilder::add_polyline(uint flags, Double const_width, Double elevation, 
@@ -135,5 +134,26 @@ namespace converter {
         }
         
         *out << "</polyline>";
+    }
+    
+    void ARCBuilder::add_ellipse(Vector center, Vector a, Vector b)
+    {
+        *out << "<ellipse>"
+             << "<point x=\"" << center.x() << "\" y=\"" << center.y() << "\"/>"
+             << "<point x=\"" << a.x() << "\" y=\"" << a.y() << "\"/>"
+             << "<point x=\"" << b.x() << "\" y=\"" << b.y() << "\"/>"
+             << "</ellipse>";
+    }
+       
+    void ARCBuilder::add_ellipse(Vector center, Vector a, Vector b, 
+                                 Vector start_point, Vector end_point)
+    {
+        *out << "<ellipse>"
+             << "<point x=\"" << center.x() << "\" y=\"" << center.y() << "\"/>"
+             << "<point x=\"" << a.x() << "\" y=\"" << a.y() << "\"/>"
+             << "<point x=\"" << b.x() << "\" y=\"" << b.y() << "\"/>"
+             << "<point x=\"" << start_point.x() << "\" y=\"" << start_point.y() << "\"/>"
+             << "<point x=\"" << end_point.x() << "\" y=\"" << end_point.y() << "\"/>"
+             << "</ellipse>";
     }
 }

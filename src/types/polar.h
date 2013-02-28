@@ -12,7 +12,7 @@ public:
     Polar();
     Polar(const Polar&);
     Polar(const Point&);
-    Polar(const Double& polar, const Double& angle);
+    Polar(const Double& radius, const Double& angle);
     
     Double radius() const;
     void set_radius(const Double&);

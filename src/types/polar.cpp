@@ -2,12 +2,14 @@
 
 #include <cmath>
 
+#include "../util/constants.h"
+
 Polar::Polar() : _radius(0.0), _angle(0.0) {}
 
 Polar::Polar(const Point& p)
 {
     _radius = sqrt((p.x()*p.x() + p.y()*p.y()).value());
-    _angle  = atan2(p.y().value(),p.x().value());
+    _angle  = p.angle();
 } 
 
 Polar::Polar(const Polar& polar) 

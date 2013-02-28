@@ -11,6 +11,7 @@ protected:
     Double _x, _y, _z;
     
 public:
+    Point() { }
     Point(const Point&);
     Point(const Double&, const Double&);
     Point(const Double&, const Double&, const Double&);
@@ -35,6 +36,8 @@ public:
     
     Double distance(const Point& p) const;
     static Double distance(const Point& p1, const Point& p2);
+    
+    Double angle() const;
     
     friend std::ostream& operator<<(std::ostream& os, const Point& p);
     friend Point operator*(const Double&, const Point&);

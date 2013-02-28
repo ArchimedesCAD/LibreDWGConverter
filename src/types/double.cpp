@@ -3,7 +3,7 @@
 #include <limits>
 #include <cmath>
 
-Double::Double() { }
+Double::Double() : _x(0.0) { }
 
 Double::Double(long double x) { _x = x; }
 

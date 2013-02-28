@@ -9,7 +9,7 @@ CC=g++
 EXTRA_LDFLAGS=
 
 #File definitions
-SOURCES = $(wildcard *.cpp src/*.cpp src/types/*.cpp src/util/*.cpp)
+SOURCES = $(wildcard *.cpp src/*.cpp src/types/*.cpp src/util/*.cpp src/geometry/*.cpp)
 OBJECTS = $(wildcard libredwg/src/*.o) $(addprefix $(BUILD_DIR)/, $(notdir $(SOURCES:.cpp=.o)))
 OBJECTS_NOMAIN = $(OBJECTS:$(BUILD_DIR)/main.o=)
 #TEST_SOURCES = $(wildcard tests/*.cpp)
@@ -84,6 +84,7 @@ clean:
 	@$(RM) -fv src/*~
 	@$(RM) -fv src/util/*~
 	@$(RM) -fv src/types/*~
+	@$(RM) -fv src/geometry/*~
 #	@$(RM) -fv tests/*~
 
 clean-deps:

@@ -22,4 +22,4 @@ Vector Vector::cross_product(const Vector& b) const
     Double z = (_x * b.y()) - (_y * b.x());
     
     return Vector(x,y,z);
-} 
+}

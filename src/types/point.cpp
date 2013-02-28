@@ -2,6 +2,8 @@
 
 #include <cmath>
 
+#include "../util/constants.h"
+
 Point::Point(const Point& p) : _x(p.x()), _y(p.y()), _z(p.z()) { }
 
 Point::Point(const Double& x, const Double& y) : _x(x), _y(y), _z(0.0) {}
@@ -72,6 +74,17 @@ Double Point::distance(const Point& p1, const Point& p2)
                  ((p1.z()-p2.z())*(p1.z()-p2.z()));
     
     return sqrt(res.value());
+}
+
+Double Point::angle() const
+{
+    Double angle = atan2(_y.value(),_x.value());
+    
+    if (angle.value() > 0.0) {
+        return angle;
+    } else {
+        return angle + (2*constants::PI);
+    }
 }
 
 std::ostream& operator<<(std::ostream& os, const Point& p)

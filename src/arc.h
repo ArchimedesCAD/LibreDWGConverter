@@ -34,6 +34,8 @@ namespace converter {
                           std::vector<Double> bulges, std::vector<Interval> widths);
     private:
         void add_ellipse(Vector center, Vector a, Vector b);
+        void add_ellipse(Vector center, Vector a, Vector b, 
+                         Vector start_point, Vector end_point);
     };
 }
 
