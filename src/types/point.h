@@ -12,6 +12,7 @@ protected:
     
 public:
     Point(const Point&);
+    Point(const Double&, const Double&);
     Point(const Double&, const Double&, const Double&);
     
     Double x() const;

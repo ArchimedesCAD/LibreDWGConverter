@@ -4,6 +4,8 @@
 
 Point::Point(const Point& p) : _x(p.x()), _y(p.y()), _z(p.z()) { }
 
+Point::Point(const Double& x, const Double& y) : _x(x), _y(y), _z(0.0) {}
+                
 Point::Point(const Double& x, const Double& y, const Double& z) : 
                 _x(x), _y(y), _z(z) {}
 
