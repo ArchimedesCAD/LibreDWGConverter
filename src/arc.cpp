@@ -2,12 +2,16 @@
 
 #include "util/util.h"
 #include "util/error.h"
+#include "util/constants.h"
 
 using namespace std;
 
 namespace converter {
 
-    ARCBuilder::ARCBuilder(const char *name) : Builder(name, "arc") { }
+    ARCBuilder::ARCBuilder(const char *name) : Builder(name, "arc") 
+    { 
+        out->precision(constants::PRECISION);
+    }
 
     ARCBuilder::~ARCBuilder() { }
 
@@ -67,8 +71,8 @@ namespace converter {
                                  Double start_angle, Double end_angle, 
                                  Vector extrusion)
     {
-        if (start_angle.is_equal_with_epsilon(0.0, EPSILON) &&
-            end_angle.is_equal_with_epsilon(2*PI, EPSILON)) {
+        if (start_angle.is_equal_with_epsilon(0.0, constants::EPSILON) &&
+            end_angle.is_equal_with_epsilon(2*constants::PI, constants::EPSILON)) {
             Vector a = center - sm_axis;
             Vector b = center + 
                        Vector(-a.y()+center.y(),a.x()-center.x(), 0.0)*axis_ratio; // Only 2D

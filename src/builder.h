@@ -10,10 +10,7 @@ namespace converter {
     {  
     protected:
         std::fstream *out;
-        char *filename;
-        
-        const Double EPSILON = 1e-16;
-        const Double PI = 3.14159265358979323846;        
+        char *filename;       
 
     public:
         Builder(const char*, const char*);
