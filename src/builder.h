@@ -10,7 +10,7 @@ namespace converter {
     {  
     protected:
         std::fstream *out;
-        char *filename;       
+        char *filename;
 
     public:
         Builder(const char*, const char*);
@@ -24,6 +24,9 @@ namespace converter {
         
         virtual void add_line(Vector point, Vector vector) {}
         
+        virtual void add_arc(Vector center, Double radius, Double start_angle,
+                             Double end_angle, Vector extrusion, Double thickness) {}
+
         virtual void add_circle(Vector center, Double radius, Vector extrusion,
                                 Double thickness) {}
 

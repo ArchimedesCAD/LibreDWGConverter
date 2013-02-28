@@ -19,6 +19,9 @@ namespace converter {
         
         void add_line(Vector point, Vector vector);
 
+        void add_arc(Vector center, Double radius, Double start_angle,
+                     Double end_angle, Vector extrusion, Double thickness);
+
         void add_circle(Vector center, Double radius, Vector extrusion,
                         Double thickness);
         

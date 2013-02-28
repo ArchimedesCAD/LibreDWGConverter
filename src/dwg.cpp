@@ -155,6 +155,22 @@ namespace converter {
                 
                 break;
             }       
+            case DWG_TYPE_ARC:
+            {
+                Dwg_Entity_ARC *arc = dwg_data.object[index].tio.entity->tio.ARC;
+                
+                Vector center      = {arc->center.x, arc->center.y, arc->center.z};
+                Double radius      = arc->radius;
+                Double thickness   = arc->thickness;
+                Vector extrusion   = {arc->extrusion.x, arc->extrusion.y,
+                                     arc->extrusion.z};
+                Double start_angle = arc->start_angle;
+                Double end_angle   = arc->end_angle;
+                
+                builder->add_arc(center,radius,start_angle,end_angle,extrusion,thickness);
+                
+                break;
+            }
             case DWG_TYPE_CIRCLE:
             {
                 Dwg_Entity_CIRCLE *circle = 
@@ -168,6 +184,7 @@ namespace converter {
                 Double thickness = circle->thickness;
                 
                 builder->add_circle(center,radius,extrusion,thickness);
+                
                 break;
             }
             case DWG_TYPE_ELLIPSE:
@@ -193,6 +210,7 @@ namespace converter {
             default:
             {
                 fail(static_cast<Dwg_Object_Type>(dwg_data.object[index].type));
+                
                 return;
             }
         }

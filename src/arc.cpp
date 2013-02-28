@@ -4,12 +4,14 @@
 #include "util/error.h"
 #include "util/constants.h"
 
+#include "types/polar.h"
+
 using namespace std;
 
 namespace converter {
 
     ARCBuilder::ARCBuilder(const char *name) : Builder(name, "arc") 
-    { 
+    {
         out->precision(constants::PRECISION);
     }
 
@@ -58,6 +60,28 @@ namespace converter {
              << "</infiniteline>";
     }
     
+    void ARCBuilder::add_arc(Vector center, Double radius, Double start_angle,
+                             Double end_angle, Vector extrusion, Double thickness)
+    {
+        Polar polar1(radius, start_angle);
+        Polar polar2(radius, (start_angle+end_angle)/2);
+        Polar polar3(radius, end_angle);
+        
+        if (start_angle.value() > end_angle.value()) {
+            polar2.set_angle(polar2.angle() + constants::PI);
+        }
+        
+        Vector p1 = polar1.toCartesian() + center;
+        Vector p2 = polar2.toCartesian() + center;
+        Vector p3 = polar3.toCartesian() + center;
+        
+        *out << "<arc>"
+             << "<point x=\"" << p1.x() << "\" y=\"" << p1.y() << "\" />"
+             << "<point x=\"" << p2.x() << "\" y=\"" << p2.y() << "\" />"
+             << "<point x=\"" << p3.x() << "\" y=\"" << p3.y() << "\" />"
+             << "</arc>";
+    }
+
     void ARCBuilder::add_circle(Vector center, Double radius, Vector extrusion,
                                 Double thickness)
     {
