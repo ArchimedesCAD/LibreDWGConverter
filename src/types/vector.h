@@ -7,6 +7,7 @@ class Vector : public Point
 {
 public:
     Vector(const Point&);
+    Vector(const Double&, const Double&);
     Vector(const Double&, const Double&, const Double&);
     
     Double norm() const;

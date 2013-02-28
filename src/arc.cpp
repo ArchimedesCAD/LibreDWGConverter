@@ -4,8 +4,6 @@
 #include "util/error.h"
 #include "util/constants.h"
 
-#include "types/polar.h"
-
 using namespace std;
 
 namespace converter {
@@ -115,5 +113,27 @@ namespace converter {
              << "<point x=\"" << a.x() << "\" y=\"" << a.y() << "\"/>"
              << "<point x=\"" << b.x() << "\" y=\"" << b.y() << "\"/>"
              << "</ellipse>";
+    }
+    
+    void ARCBuilder::add_polyline(uint flags, Double const_width, Double elevation, 
+                                  Double thickness, Vector normal, std::vector<Vector> points,
+                                  std::vector<Double> bulges, std::vector<Interval> widths)
+    {
+        *out << "<polyline>";
+        
+        for (auto &p : points) {
+             *out << "<point x=\"" << p.x() << "\" y=\"" << p.y() << "\"/>";
+        }
+        
+        /*
+         *  Observation of Neuton Jr: i suspect when flag be equals zero indicates opened 
+         * polylines. Otherwise, flag indicates polygons.
+         */
+        if (points.size() > 2 && flags) {
+            Vector p = points[0];
+            *out << "<point x=\"" << p.x() << "\" y=\"" << p.y() << "\"/>";
+        }
+        
+        *out << "</polyline>";
     }
 }

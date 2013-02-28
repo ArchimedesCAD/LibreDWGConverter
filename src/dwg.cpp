@@ -1,6 +1,7 @@
 #include "dwg.h"
 
 #include <iostream>
+#include <vector>
 
 #include "util/util.h"
 #include "util/error.h"
@@ -205,6 +206,46 @@ namespace converter {
                 builder->add_ellipse(center,sm_axis,axis_ratio,
                                      start_angle,end_angle,extrusion);
                                 
+                break;
+            }
+            case DWG_TYPE_LWPLINE:  // Archimedes polylines
+            {
+                Dwg_Entity_LWPLINE *lwpline = 
+                       dwg_data.object[index].tio.entity->tio.LWPLINE;
+                
+                uint flags          = lwpline->flags;
+                Double const_width  = lwpline->const_width;
+                Double elevation    = lwpline->elevation;
+                Double thickness    = lwpline->thickness;
+                Vector normal       = {lwpline->normal.x,lwpline->normal.y,lwpline->normal.z};
+
+                ulong num_points    = lwpline->num_points;
+                BITCODE_2RD* dwg_points = lwpline->points;
+                
+                // Store dwg_points in vector with Vector objects
+                std::vector<Vector> points;
+                for (uint i = 0; i < num_points; i++) {
+                    Vector point = {dwg_points[i].x,dwg_points[i].y,0.0};
+                    points.push_back(point);
+                }
+                
+                // Store dwg bulges in vector with Double objects
+                std::vector<Double> bulges(lwpline->bulges,
+                                           lwpline->bulges + lwpline->num_bulges);
+                
+                ulong num_widths    = lwpline->num_widths;
+                Dwg_Entity_LWPLINE_width* dwg_widths = lwpline->widths;
+
+                // Store dwg_widths in vector with Interval objects
+                std::vector<Interval> widths;
+                for (uint i = 0; i < num_widths; i++) {
+                    Interval width = {dwg_widths[i].start, dwg_widths[i].end};
+                    widths.push_back(width);
+                }
+                
+                builder->add_polyline(flags,const_width,elevation,thickness, normal,
+                                      points, bulges, widths);
+                
                 break;
             }
             default:
